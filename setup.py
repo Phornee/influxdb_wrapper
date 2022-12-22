@@ -20,7 +20,7 @@ setuptools.setup(
     ],
     install_requires=[
         'dnspython>=2.1.0',
-        'influxdb_client>=1.14.0'
+        'influxdb>=5.3.1',
     ],
     python_requires='>=3.6',
 )
