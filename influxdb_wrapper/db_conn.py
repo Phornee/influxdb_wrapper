@@ -49,3 +49,12 @@ class DBConn(ABC):
 
     def releaseLock(self, lockname):
         raise
+
+
+def influxdb_factory(db_type: str = 'influx') -> DBConn:
+    if db_type == 'influx':
+        from .influxdb_conn import InfluxDBConn
+        return InfluxDBConn()
+    elif db_type == 'mock':
+        from .mockdb_conn import InfluxMockDBConn
+        return InfluxMockDBConn()

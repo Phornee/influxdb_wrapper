@@ -5,12 +5,11 @@ import inspect
 
 THIS_FOLDER = os.path.dirname(inspect.getfile(inspect.currentframe()))
 sys.path.insert(0, os.path.dirname(THIS_FOLDER))
-# from influxdb_wrapper import InfluxDBConn  # noqa
-from influxdb_wrapper import InfluxMockDBConn  # noqa
+from influxdb_wrapper import influxdb_factory  # noqa
 
 
 class Testing(unittest.TestCase):
-    db = InfluxMockDBConn()
+    db = influxdb_factory(db_type='mock')
     db.openConn(None)
 
     def test_index(self):
