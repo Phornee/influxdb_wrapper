@@ -1,4 +1,4 @@
-from .db_conn import DBConn, DBExceptionNotOpen
+from db_conn import DBConn, DBExceptionNotOpen
 from datetime import datetime
 from copy import deepcopy
 
@@ -15,7 +15,7 @@ class InfluxMockDBConn(DBConn):
         self.conn.close()
 
     def insert(self, table, rows):
-        if not self.db_tables:
+        if self.db_tables is None:
             raise DBExceptionNotOpen('Database not opened')
 
         points = deepcopy(rows)

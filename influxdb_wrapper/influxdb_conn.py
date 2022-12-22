@@ -1,4 +1,4 @@
-from .db_conn import DBConn, DBOpenException, DBExceptionNotOpen, DBGetLockException, DBReleaseLockException
+from db_conn import DBConn, DBOpenException, DBExceptionNotOpen, DBGetLockException, DBReleaseLockException
 from datetime import datetime
 from influxdb import InfluxDBClient
 from copy import deepcopy
