@@ -5,8 +5,8 @@ import inspect
 
 THIS_FOLDER = os.path.dirname(inspect.getfile(inspect.currentframe()))
 sys.path.insert(0, os.path.dirname(THIS_FOLDER))
-from influxdb_conn import InfluxDBConn  # noqa
-from mockdb_conn import InfluxMockDBConn  # noqa
+# from influxdb_wrapper import InfluxDBConn  # noqa
+from influxdb_wrapper import InfluxMockDBConn  # noqa
 
 
 class Testing(unittest.TestCase):

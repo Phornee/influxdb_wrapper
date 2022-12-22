@@ -1,4 +1,4 @@
-from db_conn import DBConn, DBExceptionNotOpen
+from .db_conn import DBConn, DBExceptionNotOpen
 from datetime import datetime
 from copy import deepcopy
 

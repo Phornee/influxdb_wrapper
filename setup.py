@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="influxdb_wrapper",
-    version="0.0.1",
+    version="0.0.2",
     author="Ismael Raya",
     author_email="phornee@gmail.com",
     description="DB management wrapper over influxDB",
