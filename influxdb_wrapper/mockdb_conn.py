@@ -25,7 +25,7 @@ class InfluxMockDBConn(DBConn):
                 point['time'] = datetime.utcnow()
         self.db_tables[table] = points
 
-    def select(self, table_name: str, tags_conds: tuple):
+    def select(self, table_name: str, tags_conds: tuple, order_by: str = None, order_asc: bool = True, limit: int = 0):
         if self.db_tables is None:
             raise DBExceptionNotOpen('Database not opened')
 
@@ -47,6 +47,13 @@ class InfluxMockDBConn(DBConn):
                 for field, value in row['fields'].items():
                     result_row[field] = value
                 result.append(result_row)
+
+        # Sort if needed
+        if order_by is not None:
+            result.sort(reverse=not order_asc, key=lambda x: x[order_by])
+
+        # Limit if needed
+        result = result[0:limit]
 
         return result
 
