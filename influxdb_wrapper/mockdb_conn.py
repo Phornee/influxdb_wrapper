@@ -25,6 +25,32 @@ class InfluxMockDBConn(DBConn):
                 point['time'] = datetime.utcnow()
         self.db_tables[table] = points
 
+    def select(self, table_name: str, tags_conds: tuple):
+        if self.db_tables is None:
+            raise DBExceptionNotOpen('Database not opened')
+
+        result = []
+        table = self.db_tables[table_name]
+        for row in table:
+            fullfills = True
+            for cond in tags_conds:
+                if row['tags'][cond[0]] != cond[1]:
+                    fullfills = False
+                    break
+
+            if fullfills:
+                # influx returns everything in plain (no tags or fields subdicts)
+                result_row = {}
+                result_row['time'] = row['time']
+                for tag, value in row['tags'].items():
+                    result_row[tag] = value
+                for field, value in row['fields'].items():
+                    result_row[field] = value
+                result.append(result_row)
+
+        return result
+
+
     def getLock(self, lockname):
         raise
 
