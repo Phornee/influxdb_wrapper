@@ -37,9 +37,8 @@ jobs:
       # Tests with unittest
       - name: Test with unittest
         run: |
-          cd ${{ github.event.repository.name }}/tests
+          cd tests
           python3 -m unittest discover
-          cd ..
           cd ..
 
       # Upload to TestPyPI

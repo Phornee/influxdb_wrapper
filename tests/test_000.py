@@ -25,6 +25,5 @@ class Testing(unittest.TestCase):
         self.assertEqual(len(points), 1)
 
 
-
 if __name__ == '__main__':
     unittest.main()
