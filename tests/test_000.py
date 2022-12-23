@@ -3,9 +3,7 @@ import os
 import sys
 import inspect
 
-THIS_FOLDER = os.path.dirname(inspect.getfile(inspect.currentframe()))
-sys.path.insert(0, os.path.dirname(THIS_FOLDER))
-from influxdb_wrapper import influxdb_factory  # noqa
+from influxdb_wrapper import influxdb_factory
 
 
 class Testing(unittest.TestCase):
