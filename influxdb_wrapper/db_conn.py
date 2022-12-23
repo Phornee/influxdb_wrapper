@@ -58,10 +58,3 @@ def influxdb_factory(db_type: str = 'influx') -> DBConn:
     elif db_type == 'mock':
         from .mockdb_conn import InfluxMockDBConn
         return InfluxMockDBConn()
-
-
-def influxdb_classname_factory(db_type: str = 'influx') -> DBConn:
-    if db_type == 'influx':
-        return InfluxDBConn
-    elif db_type == 'mock':
-        return InfluxMockDBConn

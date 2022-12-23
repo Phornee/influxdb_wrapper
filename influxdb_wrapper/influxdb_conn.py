@@ -51,9 +51,10 @@ class InfluxDBConn(DBConn):
             for cond in tags_conds[1:]:
                 conds_string += " AND " + self._get_condition_string(cond)
 
-        query = """SELECT * from DHT22 {conditions}
+        query = """SELECT * from {table} {conditions}
                 ORDER BY {order_by} {direction}
-                LIMIT {limit}""".format(conditions=conds_string,
+                LIMIT {limit}""".format(table=table_name,
+                                        conditions=conds_string,
                                         order_by=order_by,
                                         direction='ASC' if order_asc else 'DESC',
                                         limit=limit)
