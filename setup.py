@@ -19,7 +19,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'dnspython>=2.1.0',
+        'dnspython>=1.16.0',
         'influxdb>=5.3.1',
     ],
     python_requires='>=3.6',
