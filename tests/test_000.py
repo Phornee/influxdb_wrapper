@@ -1,16 +1,18 @@
+""" unittesting """
 import unittest
-import os
-import sys
-import inspect
 
 from influxdb_wrapper import influxdb_factory
 
 
 class Testing(unittest.TestCase):
+    """ Unittesting
+    """
     db = influxdb_factory(db_type='mock')
-    db.openConn(None)
+    db.open_conn(None)
 
     def test_insert(self):
+        """ Test insert
+        """
         points = [
                     {"tags": {"sensorid": 0}, "fields": {"temp": 20.0, "humidity": 50.0}},
                     {"tags": {"sensorid": 0}, "fields": {"temp": 21.0, "humidity": 50.1}},
@@ -19,6 +21,8 @@ class Testing(unittest.TestCase):
         self.db.insert('DHT22', points)
 
     def test_select(self):
+        """ Test select
+        """
         points = self.db. select('DHT22', [('sensorid', 0)], order_by='time', order_asc=False, limit=1)
         self.assertEqual(len(points), 1)
 

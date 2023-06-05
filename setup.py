@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="influxdb_wrapper",
-    version="0.0.4",
+    version="0.0.5",
     author="Ismael Raya",
     author_email="phornee@gmail.com",
     description="DB management wrapper over influxDB",
@@ -19,7 +19,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        'dnspython>=1.16.0',
+        'dnspython==1.16.0',
         'influxdb>=5.3.1',
     ],
     python_requires='>=3.6',

@@ -1,18 +1,23 @@
-from .db_conn import DBConn, DBExceptionNotOpen
+""" Influx mock wrapper"""
+
 from datetime import datetime
 from copy import deepcopy
 
+from .db_conn import DBConn, DBExceptionNotOpen
+
 
 class InfluxMockDBConn(DBConn):
+    """ Wrapper mocking a fake influx connection
+    """
     def __init__(self):
         super().__init__()
         self.db_tables = None
 
-    def openConn(self, params, autocommit=True):
+    def open_conn(self, params, autocommit=True):
         self.db_tables = {}
 
-    def closeConn(self):
-        self.conn.close()
+    def close_conn(self):
+        pass
 
     def insert(self, table, rows):
         if self.db_tables is None:
@@ -26,6 +31,14 @@ class InfluxMockDBConn(DBConn):
         self.db_tables[table] = points
 
     def select(self, table_name: str, tags_conds: tuple, order_by: str = None, order_asc: bool = True, limit: int = 0):
+        """ Get db information
+        Args:
+            table_name (str): Name of the table to be queried
+            tags_conds (tuple): Tuple with (fields, value) to filter the query
+            order_by (str): Field to order by
+            order_asc (bool): If sort order is ASC. DESC if false
+            limit (int): Limit the number of queries retrieved
+        """
         if self.db_tables is None:
             raise DBExceptionNotOpen('Database not opened')
 
@@ -56,10 +69,3 @@ class InfluxMockDBConn(DBConn):
         result = result[0:limit]
 
         return result
-
-
-    def getLock(self, lockname):
-        raise
-
-    def releaseLock(self, lockname):
-        raise
