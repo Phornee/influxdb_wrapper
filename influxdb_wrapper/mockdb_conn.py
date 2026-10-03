@@ -2,6 +2,9 @@ from .db_conn import DBConn, DBExceptionNotOpen
 from datetime import datetime
 from copy import deepcopy
 
+import logging
+
+log = logging.getLogger(__name__)
 
 class InfluxMockDBConn(DBConn):
     def __init__(self):
@@ -9,6 +12,8 @@ class InfluxMockDBConn(DBConn):
         self.db_tables = None
 
     def openConn(self, params, autocommit=True):
+        # Log as info the Mock one, so we are "always" warned about that
+        log.info('Opening Influx Mock connection...')
         self.db_tables = {}
 
     def closeConn(self):

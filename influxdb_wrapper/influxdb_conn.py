@@ -3,6 +3,9 @@ from datetime import datetime
 from influxdb import InfluxDBClient
 from copy import deepcopy
 
+import logging
+
+log = logging.getLogger(__name__)
 
 class InfluxDBConn(DBConn):
     def __init__(self):
@@ -10,6 +13,9 @@ class InfluxDBConn(DBConn):
         self.conn = None
 
     def openConn(self, params, autocommit=True):
+        # Log as debug, so i will only be logged when looking for debug info
+        log.debug('Opening Influx Mock connection...')
+
         host = params['host']
         user = params['user']
         password = params['password']

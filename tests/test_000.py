@@ -1,10 +1,14 @@
 import unittest
-import os
 import sys
-import inspect
 
 from influxdb_wrapper import influxdb_factory
 
+import logging
+
+log = logging.getLogger('influxdb_wrapper')
+sh = logging.StreamHandler(sys.stdout)
+log.addHandler(sh)
+log.setLevel(logging.INFO)
 
 class Testing(unittest.TestCase):
     db = influxdb_factory(db_type='mock')
