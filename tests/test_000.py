@@ -1,8 +1,15 @@
 """ unittesting """
 import unittest
+import sys
 
 from influxdb_wrapper import influxdb_factory
 
+import logging
+
+log = logging.getLogger('influxdb_wrapper')
+sh = logging.StreamHandler(sys.stdout)
+log.addHandler(sh)
+log.setLevel(logging.INFO)
 
 class Testing(unittest.TestCase):
     """ Unittesting

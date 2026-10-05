@@ -3,7 +3,11 @@ from datetime import datetime
 from copy import deepcopy
 from influxdb import InfluxDBClient
 
+import logging
+
 from .db_conn import DBConn, DBOpenException, DBExceptionNotOpen
+
+log = logging.getLogger(__name__)
 
 class InfluxDBConn(DBConn):
     """ Wrapper over influx API, to make easier to write and read information to/from a influx database
@@ -13,6 +17,8 @@ class InfluxDBConn(DBConn):
         self.conn = None
 
     def open_conn(self, params, autocommit=True):
+        # Log as debug, so i will only be logged when looking for debug info
+        log.debug('Opening InfluxDB connection...')
         host = params['host']
         user = params['user']
         password = params['password']
